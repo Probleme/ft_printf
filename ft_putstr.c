@@ -6,7 +6,7 @@
 /*   By: ataouaf <ataouaf@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 01:05:47 by ataouaf           #+#    #+#             */
-/*   Updated: 2022/11/21 01:13:17 by ataouaf          ###   ########.fr       */
+/*   Updated: 2022/11/21 15:35:31 by ataouaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int ft_putstr(char *str)
 
     i = 0;
     if (!str)
-        return (0);
+        str = "(null)";
     while (str[i])
     {
         ft_putchar(str[i]);
