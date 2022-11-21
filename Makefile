@@ -6,12 +6,12 @@
 #    By: ataouaf <ataouaf@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 00:43:19 by ataouaf           #+#    #+#              #
-#    Updated: 2022/11/21 01:03:52 by ataouaf          ###   ########.fr        #
+#    Updated: 2022/11/21 01:18:53 by ataouaf          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
-cc = gcc
+cc = cc
 CFLAGS = -Wall -Wextra -Werror
 
 SRCS = \
