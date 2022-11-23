@@ -1,63 +1,63 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   print_i_d_u.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ataouaf <ataouaf@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 01:08:47 by ataouaf           #+#    #+#             */
-/*   Updated: 2022/11/21 01:13:26 by ataouaf          ###   ########.fr       */
+/*   Created: 2022/11/23 13:25:51 by ataouaf           #+#    #+#             */
+/*   Updated: 2022/11/23 15:15:58 by ataouaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static long	countdigit(long n)
+static int	lenght_num(long n)
 {
 	int	i;
 
 	i = 1;
 	while (n > 9)
 	{
-		n = n / 10;
+		n /= 10;
 		i++;
 	}
 	return (i);
 }
 
-static void	putnbr(long n)
+static void	ft_putnbr(long n)
 {
-	if (n > 9)
-		putnbr(n / 10);
-	ft_putchar(n % 10 + '0');
+	if (n >= 10)
+		ft_putnbr(n / 10);
+	print_c(n % 10 + '0');
 }
 
-int	ft_itoa(int n)
+int	print_u(int n)
 {
-	long	l;
-	int		size;
+	int				len;
+	unsigned int	nb;
 
-	size = 0;
-	l = n;
-	if (l < 0)
+	len = 0;
+	nb = (unsigned int)n;
+	ft_putnbr(nb);
+	len = lenght_num(nb);
+	return (len);
+}
+
+int	print_i_d(int n)
+{
+	int		len;
+	long	nb;
+
+	len = 0;
+	nb = n;
+	if (nb < 0)
 	{
-		ft_putchar('-');
-		l *= -1;
-		size += 1;
+		nb *= -1;
+		print_c('-');
+		len = 1;
 	}
-	size += countdigit(l);
-	putnbr(l);
-	return (size);
-}
-
-int	ft_uitoa(int n)
-{
-	unsigned int	u;
-	int				size;
-
-	size = 0;
-	u = (unsigned int)n;
-	size += countdigit(u);
-	putnbr(u);
-	return (size);
+	ft_putnbr(nb);
+	len += lenght_num(nb);
+	return (len);
 }

@@ -1,19 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   print_c_s.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ataouaf <ataouaf@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 01:04:18 by ataouaf           #+#    #+#             */
-/*   Updated: 2022/11/21 15:34:55 by ataouaf          ###   ########.fr       */
+/*   Created: 2022/11/23 13:22:15 by ataouaf           #+#    #+#             */
+/*   Updated: 2022/11/23 15:08:24 by ataouaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_putchar(char c)
+int	print_c(int c)
 {
-    write(1, &c, 1);
-    return (1);
+	write(1, &c, 1);
+	return (1);
+}
+
+int	print_s(char *str)
+{
+	int	i;
+
+	if (!str)
+		str = "(null)";
+	i = 0;
+	while (str[i])
+	{
+		print_c(str[i]);
+		i++;
+	}
+	return (i);
 }

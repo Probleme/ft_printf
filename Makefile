@@ -5,38 +5,37 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ataouaf <ataouaf@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/11/21 00:43:19 by ataouaf           #+#    #+#              #
-#    Updated: 2022/11/21 01:18:53 by ataouaf          ###   ########.fr        #
+#    Created: 2022/11/23 12:41:02 by ataouaf           #+#    #+#              #
+#    Updated: 2022/11/23 15:21:10 by ataouaf          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
-cc = cc
-CFLAGS = -Wall -Wextra -Werror
+SRCS = print_c_s.c print_i_d_u.c print_p_x.c ft_printf.c
 
-SRCS = \
-	  ft_printf.c \
-	  ft_putchar.c \
-	  ft_putstr.c \
-	  ft_itoa.c \
-	  ft_puthex.c
+CC = cc
+
+CFLAGS = -Wall -Wextra -Werror -c
 
 OBJS = $(SRCS:.c=.o)
 
-all: $(NAME)
+NAME = libftprintf.a
 
-$(NAME): $(OBJS)
+RM = rm -rf
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c -o $@ $^
-	ar crsu $(NAME) $@
+all : $(NAME)
 
-clean:
-	rm -f $(OBJS)
+$(NAME) : $(OBJS)
+	ar -rc $@ $^
 
-fclean: clean
-	rm -f $(NAME)
+%.o : %.c
+	$(CC) $(CFLAGS) $< -o $@
 
-re: clean all
+clean :
+	$(RM) $(OBJS)
 
-.PHONY: all clean fclean re
+fclean : clean
+	$(RM) $(NAME)
+
+re : fclean all
+
+.PHONY : all clean fclean re

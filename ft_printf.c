@@ -5,36 +5,36 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ataouaf <ataouaf@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 00:30:47 by ataouaf           #+#    #+#             */
-/*   Updated: 2022/11/21 01:03:15 by ataouaf          ###   ########.fr       */
+/*   Created: 2022/11/23 12:24:51 by ataouaf           #+#    #+#             */
+/*   Updated: 2022/11/23 15:46:33 by ataouaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	callspecifier(char c, va_list args)
+int	ft_callspecifier(char c, va_list args)
 {
 	unsigned long long	p;
 
-	if (c == 'c')
-		return (ft_putchar((char)va_arg(args, int)));
+	if (c == '%')
+		return (print_c('%'));
+	else if (c == 'c')
+		return (print_c(va_arg(args, int)));
 	else if (c == 's')
-		return (ft_putstr(va_arg(args, char *)));
-	else if (c == 'x' || c == 'X')
-		return (ft_puthex(va_arg(args, int), c));
-	else if (c == '%')
-		return (ft_putchar('%'));
-	else if (c == 'd' || c == 'i')
-		return (ft_itoa(va_arg(args, int)));
+		return (print_s(va_arg(args, char *)));
+	else if (c == 'i' || c == 'd')
+		return (print_i_d(va_arg(args, int)));
 	else if (c == 'u')
-		return (ft_uitoa(va_arg(args, int)));
+		return (print_u(va_arg(args, int)));
+	else if (c == 'x' || c == 'X')
+		return (print_x(va_arg(args, int), c));
 	else if (c == 'p')
 	{
 		p = va_arg(args, unsigned long long);
-		if (p == 0)
-			return (ft_putstr("0x0"));
+		if (p == '0')
+			return (print_s("0x0"));
 		else
-			return (ft_putstr("0x") + ft_putpointer(p));
+			return (print_s("0x") + print_p(p));
 	}
 	return (0);
 }
@@ -42,27 +42,27 @@ int	callspecifier(char c, va_list args)
 int	ft_printf(const char *str, ...)
 {
 	va_list	args;
+	int		len;
 	int		i;
-	int		sum;
 
 	if (!str)
 		return (0);
 	va_start(args, str);
+	len = 0;
 	i = 0;
-	sum = 0;
 	while (str[i])
 	{
 		if (str[i] == '%')
 		{
 			i++;
-			if (!str[i])
+			if (!str)
 				break ;
-			sum += callspecifier(str[i], args);
+			len += ft_callspecifier(str[i], args);
 		}
 		else
-			sum += ft_putchar(str[i]);
+			len += print_c(str[i]);
 		i++;
 	}
 	va_end(args);
-	return (sum);
+	return (len);
 }
