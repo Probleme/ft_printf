@@ -1,0 +1,47 @@
+variadic fonction ?
+
+definition :
+Une fonction variadique est une fonction qui prend un nombre variable d'arguments
+En language c la fonction variadique ajoute de la flexibilité au programme
+il prend un argument fixe , puis n'importe quel nombre d'argument peut etre passer 
+la fonction variadique se compose au moins d'une variable fixe puis d'une ellipse (...)
+
+declaration :
+La déclaration d'une fonction variadique utilise des ellipses comme dernier paramètre
+
+acceder aux argguments variadic :
+Pour accéder aux arguments variadiques, nous devons inclure <stdarg.h>
+
+methods :
+
+va_start(va_list ap, argN) : permet d'acceder aux arguments de la fonction variadique
+va_list : sera le pointeur vers le dernier argument fixe dans la fonction variadique
+argN : est le dernier argument fix de la fonction variadique
+À partir de la fonction variadique ci-dessus (nom_fonction (type_données nom_variable, …) ;), 
+nom_variable est le dernier argument fixe, ce qui en fait l'argN. Alors que *va_list ap* sera un pointeur vers argN (variable_name)
+
+va_arg(va_list ap, type) :Celui-ci accède à l'argument suivant de la fonction variadique.
+*va_list ap* est le même que ci-dessus, c'est-à-dire un pointeur vers argN
+*type* indique le type de données que la *va_list ap* doit attendre (double, float, int etc.)
+
+va_end : Ceci termine le parcours des arguments de la fonction variadique.
+
+
+
+Comprendre les fonctions macro définies dans <stdarg.h>
+Il y a trois macros de type fonction que nous devons comprendre avant de pouvoir écrire notre propre fonction variadique :
+
+va_start(va_list pargs, last)
+Cette macro accepte deux arguments.
+- Le premier argument est une variable déclarée de type va_list , qui est une variable de pointeur d'argument .
+- Le deuxième argument est le dernier argument fixe accepté par la fonction variadique.
+
+Cette macro initialise la variable de pointeur d'argument pargs pour pointer vers le premier argument optionnel accepté par la fonction variadique.
+va_arg(va_list pargs, type)
+Cette macro accepte deux arguments.
+- Ce premier argument est identique au premier argument de la macro va_start().
+- Le deuxième argument spécifiait le type de données attendu pointé par pargs .
+
+Cette fonction renvoie la valeur de l'argument pointé par pargs et met également à jour les pargs pour qu'ils pointent vers l' argument suivant dans la liste .
+va_end(va_list pargs)
+Cette macro met fin à l'utilisation de pargs . Selon cette page de manuel , après avoir appelé va_end(pargs) , d'autres appels va_arg avec pargs peuvent ne pas fonctionner. Cependant, dans la bibliothèque GNU C, va_end ne fait rien, vous n'aurez donc peut-être pas besoin de l'utiliser, sauf pour des raisons de portabilité.

@@ -6,7 +6,7 @@
 /*   By: ataouaf <ataouaf@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 13:25:51 by ataouaf           #+#    #+#             */
-/*   Updated: 2022/11/23 15:15:58 by ataouaf          ###   ########.fr       */
+/*   Updated: 2022/11/24 18:11:57 by ataouaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ static void	ft_putnbr(long n)
 int	print_u(int n)
 {
 	int				len;
-	unsigned int	nb;
+	unsigned int	nbr;
 
 	len = 0;
-	nb = (unsigned int)n;
-	ft_putnbr(nb);
-	len = lenght_num(nb);
+	nbr = (unsigned int)n;
+	ft_putnbr(nbr);
+	len = lenght_num(nbr);
 	return (len);
 }
 
