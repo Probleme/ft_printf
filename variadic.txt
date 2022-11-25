@@ -1,5 +1,9 @@
 variadic fonction ?
 
+Les fonctions variadiques sont des fonctions qui peuvent être appelées avec un nombre différent d'arguments
+
+fonction katakhud wahed variable argguments
+
 definition :
 Une fonction variadique est une fonction qui prend un nombre variable d'arguments
 En language c la fonction variadique ajoute de la flexibilité au programme

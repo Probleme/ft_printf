@@ -6,7 +6,7 @@
 #    By: ataouaf <ataouaf@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 12:41:02 by ataouaf           #+#    #+#              #
-#    Updated: 2022/11/23 15:21:10 by ataouaf          ###   ########.fr        #
+#    Updated: 2022/11/25 21:43:12 by ataouaf          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ all : $(NAME)
 $(NAME) : $(OBJS)
 	ar -rc $@ $^
 
-%.o : %.c
+%.o : %.c ft_printf.h
 	$(CC) $(CFLAGS) $< -o $@
 
 clean :
