@@ -66,3 +66,8 @@ int	ft_printf(const char *str, ...)
 	va_end(args);
 	return (len);
 }
+int main()
+{
+	ft_printf("%s","");
+	return 0;
+}
